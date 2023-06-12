@@ -1,4 +1,7 @@
-import argparse, h5py, os, imageio, torch
+import argparse, h5py, os, torch
+
+import cv2
+import imageio.v2 as imageio
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import torch.nn.functional as F
@@ -12,7 +15,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument('h5_path', help='Path to .h5 artifacts')
 parser.add_argument('image_path', help='Path to corresponding images')
 parser.add_argument(
-    '--image-extension', default='jpg', type=str,
+    '--image-extension', default='png', type=str,
     help='Extension of the images'
 )
 parser.add_argument(
@@ -78,12 +81,12 @@ def view_matches(h5_path, image_path):
             path_1 = os.path.join(image_path, key_1 + '.' + args.image_extension)
             path_2 = os.path.join(image_path, key_2 + '.' + args.image_extension)
 
-            bm_1 = torch.from_numpy(imageio.imread(path_1))
-            bm_2 = torch.from_numpy(imageio.imread(path_2))
+            bm_1 = torch.from_numpy(cv2.imread(path_1))
+            bm_2 = torch.from_numpy(cv2.imread(path_2))
 
             bigger_x = max(bm_1.shape[0], bm_2.shape[0])
             bigger_y = max(bm_1.shape[1], bm_2.shape[1])
-
+            print(6 // 2 <= bm_1.dim())
             padded_1 = F.pad(bm_1, (
                 0, 0,
                 0, bigger_y - bm_1.shape[1],

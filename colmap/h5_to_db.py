@@ -109,7 +109,7 @@ if __name__ == '__main__':
                                          'keypoints.h5 and matches.h5'))
     parser.add_argument('image_path', help='Path to source images')
     parser.add_argument(
-        '--image-extension', default='.jpg', type=str,
+        '--image-extension', default='.png', type=str,
         help='Extension of files in image_path'
     )
     parser.add_argument('--database-path', default='database.db',

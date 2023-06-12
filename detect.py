@@ -7,7 +7,6 @@ from tqdm import tqdm
 from torch_dimcheck import dimchecked
 
 from disk import DISK, Features
-
 class Image:
     def __init__(self, bitmap: ['C', 'H', 'W'], fname: str, orig_shape=None):
         self.bitmap     = bitmap
@@ -165,7 +164,6 @@ def extract(dataset, save_path):
             keypoints   = keypoints[order]
             descriptors = descriptors[order]
             scores      = scores[order]
-
             assert descriptors.shape[1] == args.desc_dim
             assert keypoints.shape[1] == 2
 
@@ -198,7 +196,7 @@ if __name__ == '__main__':
         help='rescaled width (px). If unspecified, image is not resized in width dimension'
     )
     parser.add_argument(
-        '--image-extension', default='jpg', type=str,
+        '--image-extension', default='png', type=str,
         help='This script ill process all files which match `image-path/*.{--image-extension}`'
     )
     parser.add_argument(

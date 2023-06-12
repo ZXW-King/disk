@@ -131,7 +131,6 @@ if __name__ == '__main__':
         depth_dst_path = ''
 
     cameras, images, points3D = read_model(sparse_path, ext='.bin')
-
     os.makedirs(calib_path, exist_ok=True)
 
     print('Creating calibration files...')

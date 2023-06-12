@@ -188,6 +188,5 @@ class MatcherWrapper:
 if __name__ == '__main__':
     dtype = torch.float16 if args.f16 else torch.float32
     described_samples = H5Store(args.h5_path, dtype=dtype)
-
     with h5py.File(os.path.join(args.h5_path, 'matches.h5'), 'a') as hdf:
         brute_match(described_samples, hdf)
